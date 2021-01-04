@@ -1,0 +1,22 @@
+{
+  "name": "karen-from-hr",
+  "version": "1.0.0",
+  "description": "Hello I am from hr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brymlee/karen-from-hr.git"
+  },
+  "author": "",
+  "license": "GPL-1.0",
+  "bugs": {
+    "url": "https://github.com/brymlee/karen-from-hr/issues"
+  },
+  "homepage": "https://github.com/brymlee/karen-from-hr#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
