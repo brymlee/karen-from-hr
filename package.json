@@ -4,6 +4,7 @@
   "description": "Hello I am from hr",
   "main": "index.js",
   "scripts": {
+    "build": "npm i && tsc index.ts",
     "test": "echo \"Error: no test specified \" && exit 1"
   },
   "repository": {
@@ -17,7 +18,9 @@
   },
   "homepage": "https://github.com/brymlee/karen-from-hr#readme",
   "dependencies": {
+    "@types/node": "^14.14.20",
     "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
     "typescript": "^4.1.3"
   }
 }
