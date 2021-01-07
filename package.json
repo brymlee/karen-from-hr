@@ -4,7 +4,9 @@
   "description": "Hello I am from hr",
   "main": "index.js",
   "scripts": {
-    "build": "npm i && tsc index.ts",
+    "build-create-droplet": "npm i && tsc create-droplet.ts",
+    "build-exchange-rate-cron": "npm i && tsc exchange-rate-cron.ts",
+    "build": "npm i && npm run build-create-droplet && npm run build-exchange-rate-cron && tsc index.ts",
     "test": "echo \"Error: no test specified \" && exit 1"
   },
   "repository": {
