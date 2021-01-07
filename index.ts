@@ -1,6 +1,6 @@
 require('dotenv').config();
 import { Client, TextChannel } from 'discord.js';
-import { exchangeRate } from './exchange-rate-cron';
+import { exchangeRate } from './exchange-rate';
 
 const client = new Client();
 
