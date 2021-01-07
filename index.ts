@@ -7,22 +7,17 @@ const client = new Client();
 client.login(process.env.KAREN_FROM_HR_SECRET_TOKEN);
 
 client.on('message', message => {
-  if(message.channel instanceof TextChannel){
+  if(message.channel instanceof TextChannel && message.mentions.users.some(user => user.username.includes('Karen from hr'))){
     const textChannel = message.channel.messages.channel as TextChannel;
-    textChannel
-      .startTyping(1).then(_nothing => {
-        messageResponse(message.content).then(response => {
-          textChannel.send(`@${message.author.username} - ${response}`).then(_nothing => {
-            textChannel.stopTyping(true);
-          }, err => {
-            console.log(`Error sending message ${err}`);
-          });
-        }, err => {
-          console.log(`Error getting response to message ${err}`);
-        });
+    messageResponse(message.content).then(response => {
+      textChannel.send(`@${message.author.username} - ${response}`).then(_nothing => {
+        textChannel.stopTyping(true);
       }, err => {
-        console.log(`Error trying to start typing ${err}`);
+        console.log(`Error sending message ${err}`);
       });
+    }, err => {
+      console.log(`Error getting response to message ${err}`);
+    });
   } 
 });
 
