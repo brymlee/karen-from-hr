@@ -11,7 +11,8 @@ client.on('ready', async () => {
   await client.channels.fetch('795699539209879612').then(
     async channel => {
       const textChannel = channel as TextChannel;
-      const result = await exchangeRate();
+      const result = (await exchangeRate(true)) as string;
+      console.log(result);
       if(result){
         await textChannel.messages.channel.send(result);
         return;
