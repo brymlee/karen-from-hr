@@ -11,11 +11,7 @@ client.on('ready', async () => {
   await client.channels.fetch('795699539209879612').then(
     async channel => {
       const textChannel = channel as TextChannel;
-      const result = await japanRailPassPrice();
-      const message = result.map(it => {
-        const { color, age, duration, yen, usd } = it;
-        return `The ${color === 'standard' ? 'standard japanese rail pass' : 'green japanese rail pass'} costs ${yen}¥ or ${usd}$ for ${age === 'child' ? 'children' : 'adults'} and for a duration of ${duration}`;
-      }).reduce((accumulator, current) => `${accumulator}\n${current}`);
+      const message = (await japanRailPassPrice(true)) as string;
       await textChannel.messages.channel.send(message)
         .then(
           _nothing => {}, 

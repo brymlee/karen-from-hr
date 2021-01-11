@@ -84,11 +84,23 @@ async function passPriceRows(
   return its;
 }
 
-export async function japanRailPassPrice(): Promise<PassPrice>{
+export const passPriceEntryAsString: (_it: PassPriceEntry) => string = (it: PassPriceEntry) => {
+  const { color, age, duration, yen, usd } = it;
+  return `The ${color === 'standard' ? 'standard japanese rail pass' : 'green japanese rail pass'} costs ${yen}¥ or ${usd}$ for ${age === 'child' ? 'children' : 'adults'} and for a duration of ${duration}`;
+};
+
+export async function japanRailPassPrice(isStringified: boolean): Promise<PassPrice | string>{
   return axios.request({
     method: 'get',
     url: 'https://www.jrailpass.com/prices',
-  }).then(res => 
-    passPriceRows(res.data as string, 1, exchangeRate(false).then(it => it as ExchangeRate | undefined), new Promise<PassPriceEntry[]>((resolve, _reject) => { resolve([]); }))
-  );
+  }).then(res => {
+    const result = passPriceRows(res.data as string, 1, exchangeRate(false).then(it => it as ExchangeRate | undefined), new Promise<PassPriceEntry[]>((resolve, _reject) => { resolve([]); }));
+    return isStringified 
+      ? result.then(passPrice => 
+          passPrice
+            .map(it => passPriceEntryAsString(it))
+            .reduce((accumulator, current) => `${accumulator}\n${current}`)
+        ) 
+      : result;
+  });
 }
