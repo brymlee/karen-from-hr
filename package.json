@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-create-droplet": "npm i && tsc create-droplet.ts",
+    "build-japan-rail-pass-price-cron": "npm i && tsc japan-rail-pass-price-cron.ts",
     "build-exchange-rate-cron": "npm i && tsc exchange-rate-cron.ts",
-    "build": "npm i && npm run build-create-droplet && npm run build-exchange-rate-cron && tsc index.ts",
+    "build": "npm i && npm run build-create-droplet && npm run build-exchange-rate-cron && npm run build-japan-rail-pass-price-cron && tsc index.ts",
     "test": "echo \"Error: no test specified \" && exit 1"
   },
   "repository": {
